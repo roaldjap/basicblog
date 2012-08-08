@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find(params[:id])
+		@comment = Comment.new
+		@comment.post_id = @post.id
 	end
 
 	def new
@@ -15,7 +17,7 @@ class PostsController < ApplicationController
 		@post = Post.new(params[:post])
 		@post.save
 		flash[:message] = "Successfully created"
-		redirect_to posts_path
+		redirect_to post_path(@post)
 	end
 
 	def edit
@@ -26,7 +28,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.update_attributes(params[:post])
 		flash[:message] = "Updated Successfully"
-		redirect_to posts_path
+		redirect_to post_path(@post)
 	end
 
 	def destroy

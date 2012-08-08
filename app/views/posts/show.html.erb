@@ -1,3 +1,7 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content%></p>
 <small><%= @post.created_at %></small>
+<hr />
+<h1>Comments</h1>
+<%= render :partial => 'comment', :collection => @post.comments %>
+<%= render :partial => 'comment_form' %>
